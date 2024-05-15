@@ -1,7 +1,39 @@
 ﻿@page "/"
+@using Models
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Game Catalog</PageTitle>
 
-<h1>Hello, Blazor!</h1>
+<table>
+    <thead>
+        <th>id</th>
+        <th>Name</th>
+        <th>Genre</th>
+        <th>Price</th>
+        <th>Release Date</th>
 
-Welcome to your new app.
+        <tbody>
+            @foreach (var game in games) {
+                <tr>
+                    <td>@game.Id</td>
+                    <td>@game.Name</td>
+                    <td>@game.Genre</td>
+                    <td>@game.Price</td>
+                    <td>@game.ReleaseDate</td>
+                </tr>
+            }
+        </tbody>
+
+    </thead>
+</table>
+
+@code {
+    private GameSummary[] games = [
+        new () {
+            Id = 1,
+            Name = "Street Fighter II",
+            Genre = "Fighting",
+            Price = 18.88M,
+            ReleaseDate = new DateOnly(1992, 7, 15),
+        },
+    ];
+}
